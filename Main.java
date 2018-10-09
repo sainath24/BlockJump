@@ -18,7 +18,6 @@ class Intro extends JComponent {
 }
 
 
-
 public class Main {
 
   static JFrame frame;

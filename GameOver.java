@@ -17,7 +17,6 @@ public class GameOver {
   GameOver() {
     Main.gameplaying = false;
     Main.frame.getContentPane().removeAll();
-    //Main.frame.repaint();
     Main.frame.getContentPane().add(new DisplayScore());
     Main.frame.setVisible(true);
   }

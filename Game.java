@@ -30,8 +30,8 @@ class RectEnemies extends JComponent {
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    g.setFont(g.getFont().deriveFont(g.getFont().getSize() * 1.8F));
-    g.drawString("Score: " + Game.score, 600, 50);
+    g.setFont(g.getFont().deriveFont(g.getFont().getSize() * 1.6F));
+    g.drawString("Score:" + Game.score, 600, 50);
     g.setColor(Color.ORANGE);
     g.drawRect(x1, 330, 25, 70);
     g.fillRect(x1, 330, 25, 70);
@@ -60,24 +60,24 @@ class enemy extends Thread {
   }
 
   void moveLeft() {
-    RectEnemies.x1-=1;
-    RectEnemies.x2-=1;
-    RectEnemies.x3-=1;
-    RectEnemies.x4-=1;
+    RectEnemies.x1-=5;
+    RectEnemies.x2-=5;
+    RectEnemies.x3-=5;
+    RectEnemies.x4-=5;
   }
 
   void checkCollision() {
     if(RectEnemies.x1<125 && RectEnemies.x1>75)
-      if(line.y>=300)
+      if(line.y>=330)
         Game.gameOver = true;
     if(RectEnemies.x2<125 && RectEnemies.x2>75)
-      if(line.y>300)
+      if(line.y>330)
         Game.gameOver = true;
     if(RectEnemies.x3<125 && RectEnemies.x3>75)
-      if(line.y>300)
+      if(line.y>330)
         Game.gameOver = true;
     if(RectEnemies.x4<125 && RectEnemies.x4>75)
-      if(line.y>300)
+      if(line.y>330)
         Game.gameOver = true;
   }
 
@@ -85,19 +85,19 @@ class enemy extends Thread {
 
   void resetEnemy() {
     if(RectEnemies.x1<0) {
-      RectEnemies.x1 = 800 + (2400-RectEnemies.x4);
+      RectEnemies.x1 = 800 + (360+RectEnemies.x4);
       Game.score++;
     }
     if(RectEnemies.x2<0) {
-      RectEnemies.x2 = 800 + (2000-RectEnemies.x1) + r.nextInt(250) + 100;
+      RectEnemies.x2 = 800 + (400+RectEnemies.x1) + r.nextInt(250) + 100;
       Game.score++;
     }
     if(RectEnemies.x3<0) {
-      RectEnemies.x3 = 800 + (1000-RectEnemies.x4) + r.nextInt(250) + 100;
+      RectEnemies.x3 = 800 + (600+RectEnemies.x4) + r.nextInt(250) + 100;
       Game.score++;
     }
     if(RectEnemies.x4<0) {
-      RectEnemies.x4 = 800 + (2000-RectEnemies.x3) + r.nextInt(250) + 100;
+      RectEnemies.x4 = 800 + (200+RectEnemies.x3) + r.nextInt(250) + 100;
       Game.score++;
     }
   }
@@ -106,15 +106,15 @@ class enemy extends Thread {
   public void run() {
     while(!Game.gameOver) {
       try {
-        sleep(7);
+        sleep(18);
       } catch(Exception e) {
         System.out.print(e);
       }
       checkCollision();
       resetEnemy();
+      moveLeft();
       Main.frame.getContentPane().add(new RectEnemies());
       Main.frame.setVisible(true);
-      moveLeft();
     }
     new GameOver();
 
@@ -130,31 +130,27 @@ class move extends Thread {
   @Override
   public void run() {
     if(!Game.gameOver) {
-      boolean pos = false;
-      while(!pos) {
-        while(line.y<=370 && line.y>220) {
-          line.y-=2;
-          Main.frame.getContentPane().add(new line());
-          Main.frame.setVisible(true);
-          try {
-            sleep(6);
-          } catch(Exception e) {
-            System.out.print(e);
-          }
+      while(line.y<=370 && line.y>230) {
+        line.y-=7;
+        Main.frame.getContentPane().add(new line());
+        Main.frame.setVisible(true);
+        try {
+          sleep(25);
+        } catch(Exception e) {
+          System.out.print(e);
         }
-        while(line.y<370) {
-          Main.frame.getContentPane().add(new line());
-          Main.frame.setVisible(true);
-          line.y+=2;
-          try {
-            sleep(6);
-          } catch(Exception e) {
-            System.out.print(e);
-          }
-        }
-        line.y = 370;
-        pos = true;
       }
+      while(line.y<370) {
+        Main.frame.getContentPane().add(new line());
+        Main.frame.setVisible(true);
+        line.y+=7;
+        try {
+          sleep(25);
+        } catch(Exception e) {
+          System.out.print(e);
+        }
+      }
+      line.y = 370;
       Game.threadRunning = false;
     }
   }
