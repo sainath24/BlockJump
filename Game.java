@@ -83,27 +83,25 @@ class enemy extends Thread {
 
   void resetEnemy() {
     if(RectEnemies.x1<0) {
-      RectEnemies.x1 = 800 + (800 - RectEnemies.x4);
+      RectEnemies.x1 = 800 + (2400-RectEnemies.x4);
       Game.score++;
     }
     if(RectEnemies.x2<0) {
-      RectEnemies.x2 = 800 + (800-RectEnemies.x1) + r.nextInt(250) + 100;
+      RectEnemies.x2 = 800 + (2000-RectEnemies.x1) + r.nextInt(250) + 100;
       Game.score++;
     }
     if(RectEnemies.x3<0) {
-      RectEnemies.x3 = 800 + (800-RectEnemies.x2) + r.nextInt(250) + 100;
+      RectEnemies.x3 = 800 + (1000-RectEnemies.x4) + r.nextInt(250) + 100;
       Game.score++;
     }
     if(RectEnemies.x4<0) {
-      RectEnemies.x4 = 800 + (800-RectEnemies.x3) + r.nextInt(250) + 100;
+      RectEnemies.x4 = 800 + (2000-RectEnemies.x3) + r.nextInt(250) + 100;
       Game.score++;
     }
   }
 
   @Override
   public void run() {
-    if(Game.gameOver)
-      stop();
     while(!Game.gameOver) {
       try {
         sleep(7);
@@ -129,17 +127,15 @@ class move extends Thread {
 
   @Override
   public void run() {
-    if(Game.gameOver)
-      stop();
-    while(!Game.gameOver) {
+    if(!Game.gameOver) {
       boolean pos = false;
       while(!pos) {
-        while(line.y<=370 && line.y>200) {
+        while(line.y<=370 && line.y>220) {
           line.y-=2;
           Main.frame.getContentPane().add(new line());
           Main.frame.setVisible(true);
           try {
-            sleep(7);
+            sleep(6);
           } catch(Exception e) {
             System.out.print(e);
           }
@@ -149,7 +145,7 @@ class move extends Thread {
           Main.frame.setVisible(true);
           line.y+=2;
           try {
-            sleep(7);
+            sleep(6);
           } catch(Exception e) {
             System.out.print(e);
           }
@@ -158,7 +154,6 @@ class move extends Thread {
         pos = true;
       }
       Game.threadRunning = false;
-      stop();
     }
   }
 }
