@@ -13,7 +13,7 @@ class Intro extends JComponent {
     g.fillRect(90,370,30,30);
     g.setColor(Color.BLACK);
     g.setFont(g.getFont().deriveFont(g.getFont().getSize() * 2.0F));
-    g.drawString("Press Any Key to Start", 300, 300);
+    g.drawString("Press Any Key to Start", 275, 285);
   }
 }
 
@@ -22,14 +22,10 @@ class Intro extends JComponent {
 public class Main {
 
   static JFrame frame;
-  static JPanel j;
   static boolean gameplaying = false;
   Main() {
     frame = new JFrame();
-    j = new JPanel();
-    j = new JPanel();
     frame.setSize(800,600);
-    frame.add(j);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.getContentPane().add(new Intro());
 
@@ -37,7 +33,6 @@ public class Main {
 
       @Override
       public void keyTyped(KeyEvent arg0) {
-
       }
 
       @Override
@@ -55,7 +50,6 @@ public class Main {
         }
       }
     });
-
 
     frame.setVisible(true);
 

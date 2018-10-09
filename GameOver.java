@@ -7,9 +7,9 @@ class DisplayScore extends JComponent {
   protected void paintComponent(Graphics arg) {
     super.paintComponent(arg);
     arg.setColor(Color.BLACK);
-    arg.setFont(arg.getFont().deriveFont(arg.getFont().getSize() * 1.4F));
-    arg.drawString("Score: "+Game.score, 350, 200);
-    arg.drawString("Press any key to exit",300,275);
+    arg.setFont(arg.getFont().deriveFont(arg.getFont().getSize() * 1.6F));
+    arg.drawString("Score: "+Game.score, 375, 200);
+    arg.drawString("Press any key to exit",325,245);
   }
 }
 

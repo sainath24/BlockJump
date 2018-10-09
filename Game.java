@@ -30,6 +30,8 @@ class RectEnemies extends JComponent {
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
+    g.setFont(g.getFont().deriveFont(g.getFont().getSize() * 1.8F));
+    g.drawString("Score: " + Game.score, 600, 50);
     g.setColor(Color.ORANGE);
     g.drawRect(x1, 330, 25, 70);
     g.fillRect(x1, 330, 25, 70);
