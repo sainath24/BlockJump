@@ -17,7 +17,6 @@ class Intro extends JComponent {
   }
 }
 
-
 public class Main {
 
   static JFrame frame;
@@ -49,9 +48,7 @@ public class Main {
         }
       }
     });
-
     frame.setVisible(true);
-
   }
 
   public static void main(String[] args) {
@@ -63,7 +60,4 @@ public class Main {
       }
     });
   }
-
-
-
 }
